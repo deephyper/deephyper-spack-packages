@@ -54,7 +54,7 @@ class PyDeephyper(PythonPackage):
     depends_on("py-numpyro@0.10:", type=("build", "run"))
 
     # depends_on("py-tensorflow@2:", type=("build", "run"), when="+nas")
-    # depends_on("py-sdv@0.17:", type=("build", "run"), when="+hps-tl")
+    depends_on("py-sdv@0.18", type=("build", "run"), when="+hps-tl")
 
     depends_on("py-mpi4py", type=("build", "run"), when="+mpi")
     depends_on("py-ray", type=("build", "run"), when="+ray")
