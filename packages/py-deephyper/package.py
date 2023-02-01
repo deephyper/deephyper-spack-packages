@@ -36,7 +36,7 @@ class PyDeephyper(PythonPackage):
     
     # "py-wheel" is already a depdenency of PythonPackage class
     depends_on("py-setuptools@42:", type="build") 
-    depends_on("py-cython@0.29.24", type="build")
+    depends_on("py-cython@0.29.24:", type="build")
 
     depends_on("py-configspace@0.4.20:", type=("build", "run"))
     depends_on("py-dm-tree", type=("build", "run"))
@@ -46,12 +46,15 @@ class PyDeephyper(PythonPackage):
     depends_on("py-packaging", type=("build", "run"))
     depends_on("py-parse", type=("build", "run"))
     depends_on("py-scikit-learn@0.23.1:", type=("build", "run"))
-    depends_on("py-scipy@1.7:", type=("build", "run"))
+    # depends_on("py-scipy@1.7:", type=("build", "run"))
     depends_on("py-tqdm@4.64.0:", type=("build", "run"))
     depends_on("py-pyyaml", type=("build", "run"))
     depends_on("py-tinydb", type=("build", "run"))
     depends_on("py-jax@0.3:", type=("build", "run"))
     depends_on("py-numpyro@0.10:", type=("build", "run"))
+
+    # depends_on("py-tensorflow@2:", type=("build", "run"), when="+nas")
+    # depends_on("py-sdv@0.17:", type=("build", "run"), when="+hps-tl")
 
     depends_on("py-mpi4py", type=("build", "run"), when="+mpi")
     depends_on("py-ray", type=("build", "run"), when="+ray")
@@ -59,19 +62,3 @@ class PyDeephyper(PythonPackage):
     depends_on("py-redis", type=("build", "run"), when="+redis")
     depends_on("redisjson", type=("build", "run"), when="+redis")
 
-    # "ConfigSpace>=0.4.20",
-    # "dm-tree",
-    #! "jax[cpu]>=0.3.25", 
-    # "Jinja2<3.1",
-    # "numpy",  # ==1.19.4",  # working with 1.20.1
-    #! "numpyro[cpu]",
-    # "pandas>=0.24.2",
-    # "packaging",
-    # "scikit-learn>=0.23.1",
-    # "scipy>=0.19.1",
-    # "tqdm>=4.64.0",
-    # "pyyaml",
-    # "tinydb",
-
-    # if "+dev" in self.spec:
-        # pass

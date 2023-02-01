@@ -15,7 +15,8 @@ class Redisjson(Package):
     .. code-block:: console
 
         redis-server $(spack find --path redisjson | grep  -o "/.*/redisjson.*")/redis.conf
-        
+        redis-server --module $REDISJSON_MODULE_PATH
+
     """
 
     homepage = "http://redisjson.io"
@@ -38,4 +39,9 @@ class Redisjson(Package):
         target = join_path(prefix.lib, f"librejson.{ext}")
         with open(join_path(prefix, "redis.conf"), "w") as f:
             f.write(f"loadmodule {target}")
+
+    def setup_run_environment(self, env):
+        ext = "dylib" if self.spec.satisfies("platform=darwin") else "so"
+        target = join_path(prefix.lib, f"librejson.{ext}")
+        env.set("REDISJSON_MODULE_PATH", target)
         
