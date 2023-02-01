@@ -32,11 +32,11 @@ class PyDeephyper(PythonPackage):
     variant("redis", default=False, description="Build with Redis dependencies")
 
     # Dependencies
-    depends_on("python@3.7:3.9", type=("build", "run"))
-
-    depends_on("py-setuptools@40:49.1", type="build")
-    depends_on("py-wheel@0.36.2", type="build")
-    depends_on("py-cython@0.29.24:2", type="build")
+    depends_on("python@3.7:", type=("build", "run"))
+    
+    # "py-wheel" is already a depdenency of PythonPackage class
+    depends_on("py-setuptools@42:", type="build") 
+    depends_on("py-cython@0.29.24", type="build")
 
     depends_on("py-configspace@0.4.20:", type=("build", "run"))
     depends_on("py-dm-tree", type=("build", "run"))
@@ -55,6 +55,9 @@ class PyDeephyper(PythonPackage):
 
     depends_on("py-mpi4py", type=("build", "run"), when="+mpi")
     depends_on("py-ray", type=("build", "run"), when="+ray")
+
+    depends_on("py-redis", type=("build", "run"), when="+redis")
+    depends_on("redisjson", type=("build", "run"), when="+redis")
 
     # "ConfigSpace>=0.4.20",
     # "dm-tree",
