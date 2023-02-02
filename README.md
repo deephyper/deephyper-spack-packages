@@ -40,5 +40,20 @@ spack add deephyper +nas # Tensorflow support for Neural Architecture Search
 spack add deephyper +autodeuq # Tensorflow/Tensorflow-Probability/Ray support for Deep Ensemble with Uncertainty Quantitification
 
 # All Features at Once
-spack add py-deephyper@develop +autodeuq+hps-tl+mpi+nas+redis
+spack add py-deephyper +autodeuq+hps-tl+mpi+nas+redis
+```
+
+For versions and branches of DeepHyper it is possible to either build from the github repository branches or to build from a release published on pypi.
+
+```bash
+spack add py-deephyper@master # from master branch on Github
+spack add py-deephyper@develop # from develop branch on Github
+spack add py-deephyper # from pypi
+spack add py-deephyper@0.4.2 # version 0.4.2 from pypi
+```
+
+The `info` command can help retrieve more information about the possible variants and versions which can be installed.
+
+```bash
+spack info py-deephyper
 ```
