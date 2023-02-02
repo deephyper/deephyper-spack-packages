@@ -31,7 +31,7 @@ spack install
 
 Other features can be installed with the following variants:
 
-```console
+```bash
 spack add deephyper +mpi # MPI support for MPICommEvaluator
 spack add deephyper +ray # Ray support for RayEvaluator
 spack add deephyper +redis # Redis/RedisJSON/py-redis support for RedisStorage and Distributed Search
