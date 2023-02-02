@@ -15,7 +15,7 @@ class PyDeephyper(PythonPackage):
     pypi = "deephyper/deephyper-0.4.2.tar.gz"
     git = "https://github.com/deephyper/deephyper.git"
 
-    maintainers = ["mdorier", "Deathn0t"]
+    maintainers("mdorier", "Deathn0t")
 
     # Versions
     version("master", branch="master")
@@ -46,19 +46,31 @@ class PyDeephyper(PythonPackage):
     depends_on("py-packaging", type=("build", "run"))
     depends_on("py-parse", type=("build", "run"))
     depends_on("py-scikit-learn@0.23.1:", type=("build", "run"))
-    # depends_on("py-scipy@1.7:", type=("build", "run"))
     depends_on("py-tqdm@4.64.0:", type=("build", "run"))
     depends_on("py-pyyaml", type=("build", "run"))
     depends_on("py-tinydb", type=("build", "run"))
     depends_on("py-jax@0.3:", type=("build", "run"))
     depends_on("py-numpyro@0.10:", type=("build", "run"))
 
-    # depends_on("py-tensorflow@2:", type=("build", "run"), when="+nas")
+    with when("+nas"):
+        depends_on("py-tensorflow@2:", type=("build", "run"))
+        depends_on("py-networkx", type=("build", "run"))
+        depends_on("py-pydot", type=("build", "run"))
+
+        # :2.6.3 is failing on "darwin-ventura-m1"
+        depends_on("flex@2.6.4", type=("build", "run"), when="platform=darwin target=aarch64:")
+
+    with when("+autodeuq"):
+        depends_on("py-tensorflow@2:", type=("build", "run"))
+        depends_on("py-tensorflow-probability", type=("build", "run"))
+        depends_on("py-ray", type=("build", "run"))
+
     depends_on("py-sdv@0.18", type=("build", "run"), when="+hps-tl")
 
     depends_on("py-mpi4py", type=("build", "run"), when="+mpi")
     depends_on("py-ray", type=("build", "run"), when="+ray")
 
-    depends_on("py-redis", type=("build", "run"), when="+redis")
-    depends_on("redisjson", type=("build", "run"), when="+redis")
+    with when("+redis"):
+        depends_on("py-redis", type=("build", "run"))
+        depends_on("redisjson", type=("build", "run"))
 
