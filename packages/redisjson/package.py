@@ -15,7 +15,7 @@ class Redisjson(Package):
     .. code-block:: console
 
         redis-server $(spack find --path redisjson | grep  -o "/.*/redisjson.*")/redis.conf
-        redis-server --module $REDISJSON_MODULE_PATH
+        redis-server --module $REDISJSON_MODULE_PATH # or use the environment variable
 
     """
 
