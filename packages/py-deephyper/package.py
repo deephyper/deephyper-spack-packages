@@ -27,6 +27,7 @@ class PyDeephyper(PythonPackage):
     variant("nas", default=False, description="Build with Neural Architecture Search dependencies")
     variant("autodeuq", default=False, description="Build with Automated Deep Ensemble dependencies")
     variant("hps-tl", default=False, description="Build with Hyperparameter Tuning with Transfer Learning dependencies")
+    variant("jax", default=False, description="Build with JAX dependencies")
     variant("mpi", default=False, description="Build with MPI dependencies")
     variant("ray", default=False, description="Build with Ray dependencies")
     variant("redis", default=False, description="Build with Redis dependencies")
@@ -49,8 +50,10 @@ class PyDeephyper(PythonPackage):
     depends_on("py-tqdm@4.64.0:", type=("build", "run"))
     depends_on("py-pyyaml", type=("build", "run"))
     depends_on("py-tinydb", type=("build", "run"))
-    depends_on("py-jax@0.3:", type=("build", "run"))
-    depends_on("py-numpyro@0.10:", type=("build", "run"))
+
+    with when ("+jax"):
+        depends_on("py-jax@0.3:", type=("build", "run"))
+        depends_on("py-numpyro@0.10:", type=("build", "run"))
 
     with when("+nas"):
         depends_on("py-tensorflow@2:", type=("build", "run"))
