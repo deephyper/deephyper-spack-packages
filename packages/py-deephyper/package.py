@@ -53,6 +53,7 @@ class PyDeephyper(PythonPackage):
     depends_on("py-numpyro@0.10:", type=("build", "run"))
 
     with when("+nas"):
+        #! Building tensorflow currently fails on "darwin-ventura-m1"
         depends_on("py-tensorflow@2:", type=("build", "run"))
         depends_on("py-networkx", type=("build", "run"))
         depends_on("py-pydot", type=("build", "run"))

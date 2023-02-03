@@ -1,11 +1,15 @@
 # DeepHyper Spack Packages
 
+## Overview
+
 This repository contains a collection of [Spack](https://spack.io) packages to manage the building of DeepHyper from source. Start by installing Spack on your system:
 
 ```bash
 git clone -c feature.manyFiles=true https://github.com/spack/spack.git
 . ./spack/share/spack/setup-env.sh 
 ```
+
+Spack is quite recent and evolving quickly. Many packages are regularly updated. Therefore it can sometimes be useful to checkout the `develop` branch of Spack (`git checkout develop`) in case of issue to see if a fix has already been provided but not yet released.
 
 Now should have access to the `spack` command. If you need spack to be loaded for any new session of your shell then you can add `. $PATH_TO_SPACK/spack/share/spack/setup-env.sh` to your `~/.bashrc` (or any other shell configuration). Once Spack is installed and loaded. Download the DeepHyper Spack packages and add them to your Spack installer:
 
@@ -56,4 +60,30 @@ The `info` command can help retrieve more information about the possible variant
 
 ```bash
 spack info py-deephyper
+```
+
+## Accessing Shared Site Packages
+
+Sometimes the HPC facility can provide already compiled/installed packages. Spack can reuse these packages by defining a new `upstream` configuration. After cloning the Spack repository and activating the Spack environment (the command `spack` should now be available in your shell) add a new upstream configuration in the YAML file `$SPACK_ROOT/etc/spack/upstream.yaml` (`$SPACK_ROOT` should be available in your environment after activation of Spack).
+
+At the Argonne Leadership Computing Facility (ALCF), Spack packages are provided at the `/soft/spack/root/opt/spack` location. Therefore we can edit the `upstream.yaml` file such as:
+
+
+```yaml
+upstreams: 
+    alcf-spack: 
+        install_tree: /soft/spack/root/opt/spack
+```
+
+More information about [Chaining Spack Installations](https://spack.readthedocs.io/en/latest/chain.html#using-multiple-upstream-spack-instances).
+
+## Spack and Conda
+
+```
+spack add miniconda3
+```
+
+for mac with arm64 use the `conda-forge` channel!
+```
+conda install -c conda-forge ...
 ```
