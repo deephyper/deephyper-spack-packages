@@ -15,7 +15,6 @@ class Redisjson(Package):
     .. code-block:: console
 
         redis-server $(spack find --path redisjson | grep  -o "/.*/redisjson.*")/redis.conf
-        redis-server --module $REDISJSON_MODULE_PATH # or use the environment variable
 
     """
 
@@ -27,21 +26,24 @@ class Redisjson(Package):
     depends_on("rust")
     depends_on("redis")
 
-    def build(self, spec, prefix):
+    def setup_build_environment(self, env):
+        env.set("CARGO_HOME", self.stage.source_path)
+
+    def install(self, spec, prefix):
         cargo = which("cargo")
         cargo("build", "--release")
 
-    def install(self, spec, prefix):
         mkdir(prefix.lib)
-        install_tree("target/release", prefix.lib)
+        install_tree(
+            join_path(
+                self.stage.source_path, 
+                "target", 
+                "release"
+            ), 
+            prefix.lib
+        )
 
         ext = "dylib" if self.spec.satisfies("platform=darwin") else "so"
         target = join_path(prefix.lib, f"librejson.{ext}")
         with open(join_path(prefix, "redis.conf"), "w") as f:
             f.write(f"loadmodule {target}")
-
-    def setup_run_environment(self, env):
-        ext = "dylib" if self.spec.satisfies("platform=darwin") else "so"
-        target = join_path(prefix.lib, f"librejson.{ext}")
-        env.set("REDISJSON_MODULE_PATH", target)
-        
