@@ -46,4 +46,4 @@ class Redisjson(Package):
         ext = "dylib" if self.spec.satisfies("platform=darwin") else "so"
         target = join_path(prefix.lib, f"librejson.{ext}")
         with open(join_path(prefix, "redis.conf"), "w") as f:
-            f.write(f"loadmodule {target}")
+            f.write(f"loadmodule {target}\n")
