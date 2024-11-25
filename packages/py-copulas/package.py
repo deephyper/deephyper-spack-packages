@@ -15,14 +15,11 @@ class PyCopulas(PythonPackage):
     properties."""
 
     homepage = "https://github.com/sdv-dev/Copulas"
-    pypi = "copulas/copulas-0.6.0.tar.gz"
+    pypi = "copulas/copulas-0.12.0.tar.gz"
+    version("0.12.0", sha256="ff49a6226db9a56657cdbffb12cface9065e5b6f50cdc1e950115fa8180580f3")
 
-    version("0.8.0", sha256="fa38b4b5f14582a71242f1de6bada4485f9bd4adc50c6f6571f2c121d5a57c12")
-    version("0.6.0", sha256="9de6cc738769db19794fc18e2f506a4b5ee17e6902519c0842a4698c0efb6749")
-
-    depends_on("python@3.6:", type=("build", "run"))
+    depends_on("python@3.9:3.12", type=("build", "run"))
     depends_on("py-setuptools", type="build")
-    depends_on("py-matplotlib@3.2:3", type=("build", "run"))
-    depends_on("py-numpy@1.20:1", type=("build", "run"))
-    depends_on("py-pandas@1.1.3:1", type=("build", "run"))
-    depends_on("py-scipy@1.5.4:1", type=("build", "run"))
+    depends_on("py-numpy", type=("build", "run"))
+    depends_on("py-pandas", type=("build", "run"))
+    depends_on("py-scipy", type=("build", "run"))

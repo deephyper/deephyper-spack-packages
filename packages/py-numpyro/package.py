@@ -11,19 +11,19 @@ class PyNumpyro(PythonPackage):
     """Probabilistic programming powered by JAX for autograd and JIT compilation to GPU/TPU/CPU."""
 
     homepage = "https://num.pyro.ai"
-    pypi = "numpyro/numpyro-0.10.1.tar.gz"
+    pypi = "numpyro/numpyro-0.15.3.tar.gz"
     git = "https://github.com/pyro-ppl/numpyro"
 
     # Versions
-    version("0.10.1", sha256="dfa896f01c8df43ddd41663af2b3e2fc4aea73489e669474e83329b183b29150")
+    version("0.15.3", sha256="f445eeae6200f883d790d65ce29ff245f7a9639bac3322d993eccf91c44023b3")
 
 
     # Dependencies
-    depends_on("python@3.7:", type=("build", "run"))
+    depends_on("python@3.9:3.12", type=("build", "run"))
 
     depends_on("py-setuptools", type="build")
 
-    depends_on("py-jax@0.2.13:", type=("build", "run"))
+    depends_on("py-jax@0.4.3:", type=("build", "run"))
     depends_on("py-multipledispatch", type=("build", "run"))
     depends_on("py-numpy", type=("build", "run"))
     depends_on("py-tqdm", type=("build", "run"))
