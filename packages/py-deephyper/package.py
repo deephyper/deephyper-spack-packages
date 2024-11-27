@@ -56,7 +56,7 @@ class PyDeephyper(PythonPackage):
     depends_on("py-scipy@1.14.1:1", type=("build", "run"))
     depends_on("py-tqdm@4.66.3:", type=("build", "run"))
     depends_on("py-psutil", type=("build", "run"))
-    depends_on("py-pymoo@0.5.0:", type=("build", "run"))
+    depends_on("py-pymoo@0.6.0:", type=("build", "run"))
     depends_on("py-pyyaml", type=("build", "run"))
     
     with when ("+hpo-tl"):
@@ -68,10 +68,13 @@ class PyDeephyper(PythonPackage):
         depends_on("py-numpyro@0.15.3:", type=("build", "run"))
 
     with when ("+tf_keras2"):
-        depends_on("py-tensorflow@:2.17.0", type=("build", "run"))
-        depends_on("py-tensorflow-probability@:0.23.0", type=("build", "run"))
-        depends_on("py-keras@:2.15.0", type=("build", "run"))
+        depends_on("py-tensorflow@2.17.0:", type=("build", "run"))
+        depends_on("py-tensorflow-probability@0.24.0:", type=("build", "run"))
+        depends_on("py-tf-keras@2.17.0:", type=("build", "run"))
+        depends_on("py-keras@3.6.0:", type=("build", "run"))
         depends_on("openssl@3.4.0:", type=("build", "run"))
+        depends_on("py-decorator@5.1.1:", type=("build", "run"))
+        depends_on("py-cloudpickle@3.0.0:3", type=("build", "run"))
 
     with when ("+torch"):
         depends_on("py-torch@2.5.1:2.5", type=("build", "run"))
