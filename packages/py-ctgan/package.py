@@ -13,23 +13,19 @@ class PyCtgan(PythonPackage):
     high fidelity."""
 
     homepage = "https://github.com/sdv-dev/CTGAN"
-    pypi = "ctgan/ctgan-0.5.0.tar.gz"
+    pypi = "ctgan/ctgan-0.10.2.tar.gz"
 
-    version("0.7.0", sha256="82b1bf7c46655b09f7c606ce64c9c3a37eb5d423be55ed59da3de1c6b6b41d4b")
-    version("0.5.0", sha256="b8a5dbf21dab2d2e2690013f13feb0922f5bad13440b15bc031ce9d58c7fb988")
+    version("0.10.2", sha256="e696fcb52c1591e589498eb42ff3d465bfd9052dadb75ee0eef85993ee0d358e")
 
-    depends_on("python@3.6:", type=("build", "run"))
+    depends_on("python@3.9:3.12", type=("build", "run"))
     depends_on("py-setuptools", type="build")
-    depends_on("py-packaging@20:", type=("build", "run"))
+    depends_on("py-packaging", type=("build", "run"))
 
-    depends_on("py-numpy@1.20:1", type=("build", "run"))
-    depends_on("py-pandas@1.1.3:1", type=("build", "run"))
+    depends_on("py-numpy", type=("build", "run"))
+    depends_on("py-pandas", type=("build", "run"))
 
-    depends_on("py-scikit-learn@1.1.3:1", type=("build", "run"), when="@0.7:")
-    depends_on("py-scikit-learn@0.24:1", type=("build", "run"), when="@:0.5")
+    depends_on("py-scikit-learn", type=("build", "run"))
 
-    depends_on("py-torch@1.8.0:1.11", type=("build", "run")) # 1.13 breaks on darwin)
-    depends_on("py-torchvision@0.9:0", type=("build", "run"))
+    depends_on("py-torch", type=("build", "run"))
 
-    depends_on("py-rdt@1.3.0:1", type=("build", "run"), when="@0.7:")
-    depends_on("py-rdt@0.6.1:0.6", type=("build", "run"), when="@:0.5")
+    depends_on("py-rdt@1.13.0:1", type=("build", "run"))
