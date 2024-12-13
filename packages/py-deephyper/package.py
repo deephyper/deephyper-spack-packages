@@ -25,27 +25,27 @@ class PyDeephyper(PythonPackage):
         sha256="ac27edd62ff81fcfb9b0b49f44963dadd8338be687f8f616d4cbdd6f5c68e511",
     )
 
-    # Variants
+    # Variants for machine learning features
     variant(
         "hpo-tl",
         default=False,
-        description="Build with Hyperparameter Tuning with Transfer Learning dependencies",
+        description="Build with Hyperparameter optimization with Transfer Learning dependencies",
     )
     variant("jax-cpu", default=False, description="Build with JAX dependencies")
-    # variant("jax-gpu", default=False, description="Build with JAX dependencies + GPU")
     variant(
         "tf-keras2",
         default=False,
         description="Build with TensorFlow and Keras2 dependencies",
     )
     variant("torch", default=False, description="Build with PyTorch dependencies")
-
-    """
+    
+    # Variants for storage/parallel backends
     variant("mpi", default=False, description="Build with MPI dependencies")
     variant("ray", default=False, description="Build with Ray dependencies")
     variant("redis", default=False, description="Build with Redis dependencies")
+
+    # Variants for developers
     variant("dev", default=False, description="Build with dev dependencies")
-    """
 
     # Build backend
     with default_args(type=("build")):
@@ -85,14 +85,10 @@ class PyDeephyper(PythonPackage):
     with when("+hpo-tl"), default_args(type=("build", "run")):
         depends_on("py-sdv@1.15", when="@0.8:")
 
+    # Jax for GPU is not currently available on Spack
     with when("+jax-cpu"), default_args(type=("build", "run")):
         depends_on("py-jax@0.4.3:", when="@0.8:")
         depends_on("py-numpyro@0.15.3:", when="@0.8:")
-
-    # Jax for GPU is not currently available on Spack
-    # with when ("+jax-gpu"):
-    #     depends_on("py-jax@0.4.3:", type=("build", "run"))
-    #     depends_on("py-numpyro@0.15.3:", type=("build", "run"))
 
     with when("+tf-keras2"), default_args(type=("build", "run")):
         depends_on("py-tf-keras@2.17:", when="@0.8:")
