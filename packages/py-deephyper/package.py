@@ -89,26 +89,25 @@ class PyDeephyper(PythonPackage):
         depends_on("py-jax@0.4.3:", when="@0.8:")
         depends_on("py-numpyro@0.15.3:", when="@0.8:")
 
-    with when("+tf-keras2"), default_args(type=("build", "run")):
-        depends_on("py-tf-keras@2.17:", when="@0.8:")
-        depends_on("py-tensorflow@2.17:", when="@0.8:")
-        depends_on("py-tensorflow-probability@0.24.0:", when="0.8:")
-
-    #     depends_on("py-keras@3.6.0:", type=("build", "run"))
-    #     depends_on("openssl@3.4.0:", type=("build", "run"))
-    #     depends_on("py-decorator@5.1.1:", type=("build", "run"))
-    #     depends_on("py-cloudpickle@3.0.0:3", type=("build", "run"))
-
-    # with when("+torch"):
-    #     depends_on("py-torch@2.5.1:2.5", type=("build", "run"))
-
+    # Jax for GPU is not currently available on Spack
     # with when ("+jax-gpu"):
     #     depends_on("py-jax@0.4.3:", type=("build", "run"))
     #     depends_on("py-numpyro@0.15.3:", type=("build", "run"))
 
-    # depends_on("py-mpi4py", type=("build", "run"), when="+mpi")
-    # depends_on("py-ray", type=("build", "run"), when="+ray")
+    with when("+tf-keras2"), default_args(type=("build", "run")):
+        depends_on("py-tf-keras@2.17:", when="@0.8:")
+        depends_on("py-tensorflow@2.17:", when="@0.8:")
+        depends_on("py-tensorflow-probability@0.24.0:", when="@0.8:")
 
-    # with when("+redis"):
-    #     depends_on("py-redis", type=("build", "run"))
-    #     depends_on("redisjson", type=("build", "run"))
+    with when("+torch"), default_args(type=("build", "run")):
+        depends_on("py-torch@2:", when="@0.8:")
+
+    with when("+mpi"), default_args(type=("build", "run")):
+        depends_on("py-mpi4py@3:", when="@0.8:")
+
+    with when("+ray"), default_args(type=("build", "run")):
+        depends_on("py-ray", when="@0.8:")
+
+    with when("+redis"), default_args(type=("build", "run")):
+        depends_on("py-redis")
+        depends_on("redisjson")
