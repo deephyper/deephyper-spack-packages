@@ -89,10 +89,11 @@ class PyDeephyper(PythonPackage):
         depends_on("py-jax@0.4.3:", when="@0.8:")
         depends_on("py-numpyro@0.15.3:", when="@0.8:")
 
-    # with when("+tf-keras2"):
-    #     depends_on("py-tensorflow@2.17.0:", type=("build", "run"))
-    #     depends_on("py-tensorflow-probability@0.24.0:", type=("build", "run"))
-    #     depends_on("py-tf-keras@2.17.0:", type=("build", "run"))
+    with when("+tf-keras2"), default_args(type=("build", "run")):
+        depends_on("py-tf-keras@2.17:", when="@0.8:")
+        depends_on("py-tensorflow@2.17:", when="@0.8:")
+        depends_on("py-tensorflow-probability@0.24.0:", when="0.8:")
+
     #     depends_on("py-keras@3.6.0:", type=("build", "run"))
     #     depends_on("openssl@3.4.0:", type=("build", "run"))
     #     depends_on("py-decorator@5.1.1:", type=("build", "run"))
