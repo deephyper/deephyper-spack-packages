@@ -19,9 +19,3 @@ class PyFaker(PythonPackage):
 
     depends_on("python@3.9:3.12", type=("build", "run"))
     depends_on("py-setuptools", type="build")
-
-    depends_on("py-python-dateutil@2.8.2:", type=("build", "run"))
-    depends_on("py-typing-extensions@4.12.2:", type=("build", "run"), when="^python@:3.8")
-
-    with when("@:11"):
-        depends_on("py-text-unidecode@1.3", type=("build", "run"))

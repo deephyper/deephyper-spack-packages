@@ -18,10 +18,4 @@ class PyRdt(PythonPackage):
 
     depends_on("python@3.9:3.12", type=("build", "run"))
     depends_on("py-setuptools", type="build")
-
-    depends_on("py-numpy", type=("build", "run"))
-    depends_on("py-pandas", type=("build", "run"))
-    depends_on("py-scipy", type=("build", "run"))
-
-    depends_on("py-scikit-learn", type=("build", "run"))
     depends_on("py-faker@33.0.0:", type=("build", "run"))

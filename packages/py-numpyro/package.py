@@ -17,13 +17,6 @@ class PyNumpyro(PythonPackage):
     # Versions
     version("0.15.3", sha256="f445eeae6200f883d790d65ce29ff245f7a9639bac3322d993eccf91c44023b3")
 
-
     # Dependencies
     depends_on("python@3.9:3.12", type=("build", "run"))
-
     depends_on("py-setuptools", type="build")
-
-    depends_on("py-jax@0.4.3:", type=("build", "run"))
-    depends_on("py-multipledispatch", type=("build", "run"))
-    depends_on("py-numpy", type=("build", "run"))
-    depends_on("py-tqdm", type=("build", "run"))

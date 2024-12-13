@@ -25,13 +25,8 @@ class PySdv(PythonPackage):
     depends_on("py-setuptools", type="build")
 
     with when("@:1.15.0"):
-        depends_on("py-graphviz@0.13.2:", type=("build", "run"))
-        depends_on("py-numpy", type=("build", "run"))
-        depends_on("py-pandas", type=("build", "run"))
-        depends_on("py-tqdm", type=("build", "run"))
         depends_on("py-copulas@0.12.0:0.12", type=("build", "run")) #* update spack package
         depends_on("py-ctgan@0.10.2:0.10", type=("build", "run")) #* update spack package
         depends_on("py-deepecho@0.6.1:0.6", type=("build", "run")) #* update spack package
         depends_on("py-rdt@1.13.1:1", type=("build", "run")) #* update spack package
         depends_on("py-sdmetrics@0.17.0", type=("build", "run")) #* update spack package
-        depends_on("py-cloudpickle@3.0.0:3", type=("build", "run"))

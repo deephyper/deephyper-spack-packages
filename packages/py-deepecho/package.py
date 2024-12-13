@@ -17,8 +17,3 @@ class PyDeepecho(PythonPackage):
 
     depends_on("python@3.9:3.12", type=("build", "run"))
     depends_on("py-setuptools", type="build")
-
-    depends_on("py-numpy", type=("build", "run"))
-    depends_on("py-pandas", type=("build", "run"))
-    depends_on("py-torch", type=("build", "run"))
-    depends_on("py-tqdm", type=("build", "run"))

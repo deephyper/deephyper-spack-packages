@@ -19,13 +19,4 @@ class PyCtgan(PythonPackage):
 
     depends_on("python@3.9:3.12", type=("build", "run"))
     depends_on("py-setuptools", type="build")
-    depends_on("py-packaging", type=("build", "run"))
-
-    depends_on("py-numpy", type=("build", "run"))
-    depends_on("py-pandas", type=("build", "run"))
-
-    depends_on("py-scikit-learn", type=("build", "run"))
-
-    depends_on("py-torch", type=("build", "run"))
-
     depends_on("py-rdt@1.13.0:1", type=("build", "run"))
