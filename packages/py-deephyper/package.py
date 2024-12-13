@@ -76,16 +76,18 @@ class PyDeephyper(PythonPackage):
         depends_on("py-scipy@1.10:", when="@0.8:")
         depends_on("py-tqdm@4.64.0:", when="@0.8:")
         depends_on("py-psutil", when="@0.8:")
-        depends_on("py-pymoo@0.6.1.3", when="@0.8:")
+        depends_on("py-pymoo@0.6:", when="@0.8:")
         depends_on("py-pyyaml", when="@0.8:")
 
-    # with when("+hpo-tl"):
-    #     depends_on("py-sdv@1.15.0", type=("build", "run"))
-    #     depends_on("py-autograd@1.6.2:", type=("build", "run"))
+    with when("+dev"), default_args(type=("build", "run")):
+        depends_on("py-pytest")
 
-    # with when("+jax-cpu"):
-    #     depends_on("py-jax@0.4.3:", type=("build", "run"))
-    #     depends_on("py-numpyro@0.15.3:", type=("build", "run"))
+    with when("+hpo-tl"), default_args(type=("build", "run")):
+        depends_on("py-sdv@1.15", when="@0.8:")
+
+    with when("+jax-cpu"), default_args(type=("build", "run")):
+        depends_on("py-jax@0.4.3:", when="@0.8:")
+        depends_on("py-numpyro@0.15.3:", when="@0.8:")
 
     # with when("+tf-keras2"):
     #     depends_on("py-tensorflow@2.17.0:", type=("build", "run"))
