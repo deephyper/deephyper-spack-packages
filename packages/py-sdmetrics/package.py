@@ -19,14 +19,17 @@ class PySdmetrics(PythonPackage):
 
     version("0.17.0", sha256="8e6d48ca1721b77f153e6fb4110cb2a14948f9e760fc88779a32c2c976e857e3")
 
-    depends_on("python@3.9:3.12", type=("build", "run"))
-    depends_on("py-setuptools", type="build")
-    depends_on("py-numpy", type=("build", "run"))
-    depends_on("py-pandas", type=("build", "run"))
-    depends_on("py-scikit-learn", type=("build", "run"))
-    depends_on("py-scipy", type=("build", "run"))
-    depends_on("py-copulas@0.12.0", type=("build", "run"))
-    depends_on("py-tqdm", type=("build", "run"))
-    depends_on("py-plotly@5.20.0", type=("build", "run"))
+    with default_args(type="build"):
+        depends_on("py-setuptools", type="build")
+
+    with default_args(type=("build", "run")):
+        depends_on("python@3.9:")
+        depends_on("py-numpy")
+        depends_on("py-pandas")
+        depends_on("py-scikit-learn")
+        depends_on("py-scipy")
+        depends_on("py-copulas@0.12.0")
+        depends_on("py-tqdm")
+        depends_on("py-plotly@5.20.0")
 
     

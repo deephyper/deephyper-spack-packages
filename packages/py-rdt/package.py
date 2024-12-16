@@ -16,12 +16,13 @@ class PyRdt(PythonPackage):
 
     version("1.13.1", sha256="fef2488058b65eb6a65d4e49ad81e02435cebbdcf3d9c8624af8e57ce53710a6")
 
-    depends_on("python@3.9:3.12", type=("build", "run"))
-    depends_on("py-setuptools", type="build")
+    with default_args(type="build"):
+        depends_on("py-setuptools", type="build")
 
-    depends_on("py-numpy", type=("build", "run"))
-    depends_on("py-pandas", type=("build", "run"))
-    depends_on("py-scipy", type=("build", "run"))
-
-    depends_on("py-scikit-learn", type=("build", "run"))
-    depends_on("py-faker@33.0.0:", type=("build", "run"))
+    with default_args(type=("build", "run")):
+        depends_on("python@3.9:")
+        depends_on("py-numpy")
+        depends_on("py-pandas")
+        depends_on("py-scipy")
+        depends_on("py-scikit-learn")
+        depends_on("py-faker@33.0.0:")
