@@ -21,7 +21,7 @@ class PySdv(PythonPackage):
 
     version("1.15.0", sha256="61cde74dcf097e2324cefdb8e66f2f5bf2331c416d149694897c06add0213932")
 
-    depends_on("python@3.9:3.12", type=("build", "run"))
+    depends_on("python@3.9:3.13", type=("build", "run"))
     depends_on("py-setuptools", type="build")
 
     with when("@:1.15.0"):
