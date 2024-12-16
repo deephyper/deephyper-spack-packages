@@ -17,5 +17,11 @@ class PyFaker(PythonPackage):
     pypi = "Faker/faker-33.0.0.tar.gz"
     version("33.0.0", sha256="9b01019c1ddaf2253ca2308c0472116e993f4ad8fc9905f82fa965e0c6f932e9")
 
-    depends_on("python@3.9:3.12", type=("build", "run"))
-    depends_on("py-setuptools", type="build")
+    with default_args(type="build"):
+        depends_on("py-setuptools", type="build")
+
+    with default_args(type=("build", "run")):
+        depends_on("python@3.9:")
+        depends_on("py-python-dateutil@2.8.2:")
+        depends_on("py-typing-extensions@4.12.2:", when="^python@:3.8")
+        depends_on("py-text-unidecode@1.3", when="@:11")

@@ -15,8 +15,19 @@ class PyCtgan(PythonPackage):
     homepage = "https://github.com/sdv-dev/CTGAN"
     pypi = "ctgan/ctgan-0.10.2.tar.gz"
 
-    version("0.10.2", sha256="e696fcb52c1591e589498eb42ff3d465bfd9052dadb75ee0eef85993ee0d358e")
+    version(
+        "0.10.2",
+        sha256="e696fcb52c1591e589498eb42ff3d465bfd9052dadb75ee0eef85993ee0d358e",
+    )
 
-    depends_on("python@3.9:3.12", type=("build", "run"))
-    depends_on("py-setuptools", type="build")
-    depends_on("py-rdt@1.13.0:1", type=("build", "run"))
+    with default_args(type="build"):
+        depends_on("py-setuptools")
+
+    with default_args(type=("build", "run")):
+        depends_on("python@3.9:")
+        depends_on("py-packaging")
+        depends_on("py-numpy")
+        depends_on("py-pandas")
+        depends_on("py-scikit-learn")
+        depends_on("py-torch")
+        depends_on("py-rdt@1.13.0:1")

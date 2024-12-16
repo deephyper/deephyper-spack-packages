@@ -13,7 +13,17 @@ class PyDeepecho(PythonPackage):
     homepage = "https://github.com/sdv-dev/DeepEcho"
     pypi = "deepecho/deepecho-0.6.1.tar.gz"
 
-    version("0.6.1", sha256="e3b2bb876c810953595d1999277aa9c653b33e1cc97662292893aa4608c80d4a")
+    version(
+        "0.6.1",
+        sha256="e3b2bb876c810953595d1999277aa9c653b33e1cc97662292893aa4608c80d4a",
+    )
 
-    depends_on("python@3.9:3.12", type=("build", "run"))
-    depends_on("py-setuptools", type="build")
+    with default_args(type="build"):
+        depends_on("py-setuptools", type="build")
+
+    with default_args(type=("build", "run")):
+        depends_on("python@3.9:")
+        depends_on("py-numpy")
+        depends_on("py-pandas")
+        depends_on("py-torch")
+        depends_on("py-tqdm")

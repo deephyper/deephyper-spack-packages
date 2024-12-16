@@ -16,7 +16,16 @@ class PyCopulas(PythonPackage):
 
     homepage = "https://github.com/sdv-dev/Copulas"
     pypi = "copulas/copulas-0.12.0.tar.gz"
-    version("0.12.0", sha256="ff49a6226db9a56657cdbffb12cface9065e5b6f50cdc1e950115fa8180580f3")
+    version(
+        "0.12.0",
+        sha256="ff49a6226db9a56657cdbffb12cface9065e5b6f50cdc1e950115fa8180580f3",
+    )
 
-    depends_on("python@3.9:3.12", type=("build", "run"))
-    depends_on("py-setuptools", type="build")
+    with default_args(type="build"):
+        depends_on("py-setuptools")
+
+    with default_args(type=("build", "run")):
+        depends_on("python@3.9:")
+        depends_on("py-numpy")
+        depends_on("py-pandas")
+        depends_on("py-scipy")
