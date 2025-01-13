@@ -78,7 +78,9 @@ class PyDeephyper(PythonPackage):
         depends_on("py-psutil", when="@0.8:")
         depends_on("py-pymoo@0.6:", when="@0.8:")
         depends_on("py-pyyaml", when="@0.8:")
-
+        depends_on("py-alive-progress@3.2.0:", when="@0.8:")
+        depends_on("openssl@3.4.0:", when="@0.8:")
+        
     with when("+dev"), default_args(type=("build", "run")):
         depends_on("py-pytest")
 
@@ -91,9 +93,10 @@ class PyDeephyper(PythonPackage):
         depends_on("py-numpyro@0.15.3:", when="@0.8:")
 
     with when("+tf-keras2"), default_args(type=("build", "run")):
-        depends_on("py-tf-keras@2.17:", when="@0.8:")
-        depends_on("py-tensorflow@2.17:", when="@0.8:")
+        depends_on("py-tf-keras@2.17.0", when="@0.8:")
+        depends_on("py-tensorflow@2.17.0", when="@0.8:")
         depends_on("py-tensorflow-probability@0.24.0:", when="@0.8:")
+
 
     with when("+torch"), default_args(type=("build", "run")):
         depends_on("py-torch@2:", when="@0.8:")
