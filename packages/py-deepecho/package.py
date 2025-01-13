@@ -19,7 +19,7 @@ class PyDeepecho(PythonPackage):
     )
 
     with default_args(type="build"):
-        depends_on("py-setuptools", type="build")
+        depends_on("py-setuptools")
 
     with default_args(type=("build", "run")):
         depends_on("python@3.9:")

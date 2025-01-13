@@ -37,33 +37,30 @@ Other features can be installed with the following variants:
 
 Variants for Machine Learning Features
 ```bash
-spack add deephyper +hpo-tl # Hyperparameter optimization with Transfer Learning dependencies
-spack add deephyper +jax-cpu # Jax support
-spack add deephyper +tf-keras2 # Tensorflow and Keras support
-spack add deephyper +torch # PyTorch support
+spack add py-deephyper +sdv # Hyperparameter optimization with Transfer Learning dependencies
+spack add py-deephyper +jax-cpu # Jax support
+spack add py-deephyper +tf-keras2 # Tensorflow and Keras support
+spack add py-deephyper +torch # PyTorch support
 
 # All ML Features
-spack add py-deephyper +hpo-tl+jax-cpu+tf-keras2
+spack add py-deephyper +sdv+jax-cpu+tf-keras2
 ```
 
 Variants for Storage and Parallel Backends
 ```bash
-spack add deephyper +mpi # MPI support for MPICommEvaluator
-spack add deephyper +ray # Ray support for RayEvaluator
-spack add deephyper +redis # Redis/RedisJSON/py-redis support for RedisStorage and Distributed Search
+spack add py-deephyper +mpi # MPI support for MPICommEvaluator
+spack add py-deephyper +ray # Ray support for RayEvaluator
+spack add py-deephyper +redis # Redis/RedisJSON/py-redis support for RedisStorage and Distributed Search
 
-# All storage/parallel features
-spack add py-deephyper +mpi+ray+redis
+# Common storage/parallel features and pairings
+spack add py-deephyper +ray+redis
+spack add py-deephyper +mpi+redis
+
 ```
 
 Add Dev tools
 ```bash
-spack add deephyper +dev
-```
-
-Add everything
-```bash
-spack add deephyper +hpo-tl+jax-cpu+tf-keras2+torch+mpi+ray+redis+dev
+spack add py-deephyper +dev
 ```
 
 For versions and branches of DeepHyper it is possible to either build from the github repository branches or to build from a release published on pypi.

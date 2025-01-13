@@ -27,7 +27,7 @@ class PyDeephyper(PythonPackage):
 
     # Variants for machine learning features
     variant(
-        "hpo-tl",
+        "sdv",
         default=False,
         description="Build with Hyperparameter optimization with Transfer Learning dependencies",
     )
@@ -84,7 +84,7 @@ class PyDeephyper(PythonPackage):
     with when("+dev"), default_args(type=("build", "run")):
         depends_on("py-pytest")
 
-    with when("+hpo-tl"), default_args(type=("build", "run")):
+    with when("+sdv"), default_args(type=("build", "run")):
         depends_on("py-sdv@1.15", when="@0.8:")
 
     # Jax for GPU is not currently available on Spack
