@@ -97,7 +97,6 @@ class PyDeephyper(PythonPackage):
         depends_on("py-tensorflow@2.17.0", when="@0.8:")
         depends_on("py-tensorflow-probability@0.24.0:", when="@0.8:")
 
-
     with when("+torch"), default_args(type=("build", "run")):
         depends_on("py-torch@2:", when="@0.8:")
 
