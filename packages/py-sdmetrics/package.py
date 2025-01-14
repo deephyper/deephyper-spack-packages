@@ -20,7 +20,7 @@ class PySdmetrics(PythonPackage):
     version("0.17.0", sha256="8e6d48ca1721b77f153e6fb4110cb2a14948f9e760fc88779a32c2c976e857e3")
 
     with default_args(type="build"):
-        depends_on("py-setuptools", type="build")
+        depends_on("py-setuptools")
 
     with default_args(type=("build", "run")):
         depends_on("python@3.9:")

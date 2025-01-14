@@ -17,7 +17,7 @@ class PyRdt(PythonPackage):
     version("1.13.1", sha256="fef2488058b65eb6a65d4e49ad81e02435cebbdcf3d9c8624af8e57ce53710a6")
 
     with default_args(type="build"):
-        depends_on("py-setuptools", type="build")
+        depends_on("py-setuptools")
 
     with default_args(type=("build", "run")):
         depends_on("python@3.9:")
