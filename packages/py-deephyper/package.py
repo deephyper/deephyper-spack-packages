@@ -26,17 +26,7 @@ class PyDeephyper(PythonPackage):
     )
 
     # Variants for machine learning features
-    variant(
-        "sdv",
-        default=False,
-        description="Build with Hyperparameter optimization with Transfer Learning dependencies",
-    )
     variant("jax-cpu", default=False, description="Build with JAX dependencies")
-    variant(
-        "tf-keras2",
-        default=False,
-        description="Build with TensorFlow and Keras2 dependencies",
-    )
     variant("torch", default=False, description="Build with PyTorch dependencies")
     
     # Variants for storage/parallel backends
@@ -84,18 +74,10 @@ class PyDeephyper(PythonPackage):
     with when("+dev"), default_args(type=("build", "run")):
         depends_on("py-pytest")
 
-    with when("+sdv"), default_args(type=("build", "run")):
-        depends_on("py-sdv@1.15", when="@0.8:")
-
     # Jax for GPU is not currently available on Spack
     with when("+jax-cpu"), default_args(type=("build", "run")):
         depends_on("py-jax@0.4.3:", when="@0.8:")
         depends_on("py-numpyro@0.15.3:", when="@0.8:")
-
-    with when("+tf-keras2"), default_args(type=("build", "run")):
-        depends_on("py-tf-keras@2.17.0", when="@0.8:")
-        depends_on("py-tensorflow@2.17.0", when="@0.8:")
-        depends_on("py-tensorflow-probability@0.24.0:", when="@0.8:")
 
     with when("+torch"), default_args(type=("build", "run")):
         depends_on("py-torch@2:", when="@0.8:")
