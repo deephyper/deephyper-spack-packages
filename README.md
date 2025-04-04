@@ -37,13 +37,11 @@ Other features can be installed with the following variants:
 
 Variants for Machine Learning Features
 ```bash
-spack add py-deephyper +sdv # Hyperparameter optimization with Transfer Learning dependencies
 spack add py-deephyper +jax-cpu # Jax support
-spack add py-deephyper +tf-keras2 # Tensorflow and Keras support
 spack add py-deephyper +torch # PyTorch support
 
 # All ML Features
-spack add py-deephyper +sdv+jax-cpu+tf-keras2
+spack add py-deephyper +jax-cpu+torch
 ```
 
 Variants for Storage and Parallel Backends
@@ -69,7 +67,7 @@ For versions and branches of DeepHyper it is possible to either build from the g
 spack add py-deephyper@master # from master branch on Github
 spack add py-deephyper@develop # from develop branch on Github
 spack add py-deephyper # from pypi
-spack add py-deephyper@0.4.2 # version 0.4.2 from pypi
+spack add py-deephyper@0.9.3 # version 0.9.3 from pypi
 ```
 
 The `info` command can help retrieve more information about the possible variants and versions which can be installed.
