@@ -85,7 +85,7 @@ class PyDeephyper(PythonPackage):
         depends_on("py-pydata-sphinx-theme@0.15.4", when="@0.13.2:")
         depends_on("py-sphinx-copybutton", when="@0.13.2:")
         depends_on("py-sphinx-design@0.6.1", when="@0.13.2:")
-        # depends_on("py-sphinx-lfs-content:", when="@0.13.2:")
+        # depends_on("py-sphinx-lfs-content", when="@0.13.2:")
         # depends_on("py-sphinx-tofflebutton", when="@0.13.2:")
         # TODO: the two dependencies above don't yet have a spack package
         # so they will be missing when installing py-deephyper+dev
