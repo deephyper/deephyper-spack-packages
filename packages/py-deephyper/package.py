@@ -20,13 +20,14 @@ class PyDeephyper(PythonPackage):
     # Versions
     version("master", branch="master")
     version("develop", branch="develop")
+    version("0.13.2", sha256="4adef43881de0aa3df8427793cad6714ecc7bf0fde0f5a572a376f3dc793ff3d")
     version("0.9.3", sha256="e28f9f6ca596edee7fa73f7377ca17ddab99ac4b3c7f15db27cb6e786f770f23")
     version("0.8.1", sha256="ac27edd62ff81fcfb9b0b49f44963dadd8338be687f8f616d4cbdd6f5c68e511")
 
     # Variants for machine learning features
     variant("jax-cpu", default=False, description="Build with JAX dependencies")
     variant("torch", default=False, description="Build with PyTorch dependencies")
-    
+
     # Variants for storage/parallel backends
     variant("mpi", default=False, description="Build with MPI dependencies")
     variant("ray", default=False, description="Build with Ray dependencies")
@@ -38,33 +39,30 @@ class PyDeephyper(PythonPackage):
     with default_args(deprecated=True):
         version("0.6.0", sha256="cda2dd7c74bdca4203d9cd637c4f441595f77bae6d77ef8e4a056b005357de34")
         version("0.4.2", sha256="ee1811a22b08eff3c9098f63fbbb37f7c8703e2f878f2bdf2ec35a978512867f")
-    
+
     # Build backend
     with default_args(type="build"):
-        depends_on("py-hatchling@1.25:", when="@master")
-        depends_on("py-hatchling@1.25:", when="@develop")
         depends_on("py-hatchling@1.25:", when="@0.9:")
-        depends_on("py-setuptools@42:", when="@0.8:")
-        depends_on("py-cython@0.29.24:", when="@0.8:")
+        depends_on("py-setuptools@42:", when="@0.8.1")
+        depends_on("py-cython@0.29.24:", when="@0.8.1")
 
     # Python versions
     with default_args(type=("build", "run")):
-
         depends_on("python@3.10:", when="@0.9:")
         depends_on("python@3.9:", when="@0.8:")
 
     # Dependencies from setup/toml files
     with default_args(type=("build", "run")):
-        depends_on("py-alive-progress@3.2.0:", when="@0.8:")
+        depends_on("py-alive-progress@3.2.0:", when="@0.8:0.9")
         depends_on("py-configspace@1.1.1:", when="@0.8:")
         depends_on("py-configspace@0.4.20:")
         depends_on("py-cloudpickle", when="@0.9.3:")
-        depends_on("py-dm-tree", when="@0.8:")
+        depends_on("py-dm-tree", when="@0.8:0.9.3")
         depends_on("py-jinja2@3.1.4:", when="@0.8:")
         depends_on("py-loky@3.4:", when="@0.9.3:")
         depends_on("py-matplotlib", when="@0.8:")
         depends_on("py-numpy@1.26.0:", when="@0.8:")
-        depends_on("openssl@3.4.0:", when="@0.8:")
+        depends_on("openssl@3.4.0:", when="@0.8:0.9")
         depends_on("py-pandas@0.24.2:", when="@0.8:")
         depends_on("py-packaging", when="@0.8:")
         depends_on("py-parse", when="@0.8:")
@@ -73,11 +71,24 @@ class PyDeephyper(PythonPackage):
         depends_on("py-pyyaml", when="@0.8:")
         depends_on("py-scikit-learn@0.23.1:", when="@0.8:")
         depends_on("py-scipy@1.10:", when="@0.8:")
-
         depends_on("py-tqdm@4.64.0:", when="@0.8:")
-        
+
     with when("+dev"), default_args(type=("build", "run")):
+        depends_on("py-pybuild", when="@0.13.2:")
         depends_on("py-pytest")
+        depends_on("py-pytwine", when="@0.13.2:")
+        depends_on("py-ruff", when="@0.13.2:")
+        depends_on("py-gitpython", when="@0.13.2:")
+        depends_on("py-ipython", when="@0.13.2:")
+        depends_on("py-sphinx@5:", when="@0.13.2:")
+        depends_on("py-sphinx-book-theme@1.1.4", when="@0.13.2:")
+        depends_on("py-pydata-sphinx-theme@0.15.4", when="@0.13.2:")
+        depends_on("py-sphinx-copybutton", when="@0.13.2:")
+        depends_on("py-sphinx-design@0.6.1", when="@0.13.2:")
+        # depends_on("py-sphinx-lfs-content:", when="@0.13.2:")
+        # depends_on("py-sphinx-tofflebutton", when="@0.13.2:")
+        # TODO: the two dependencies above don't yet have a spack package
+        # so they will be missing when installing py-deephyper+dev
 
     # Jax for GPU is not currently available on Spack
     with when("+jax-cpu"), default_args(type=("build", "run")):
@@ -89,10 +100,12 @@ class PyDeephyper(PythonPackage):
 
     with when("+mpi"), default_args(type=("build", "run")):
         depends_on("py-mpi4py@3:", when="@0.8:")
+        depends_on("py-mpi4py@3.1.3:", when="@0.13.2:")
 
     with when("+ray"), default_args(type=("build", "run")):
         depends_on("py-ray", when="@0.8:")
+        depends_on("py-ray@1.3.0:", when="@0.13.2:")
 
     with when("+redis"), default_args(type=("build", "run")):
         depends_on("py-redis")
-        depends_on("redisjson")
+        depends_on("redisjson", when="@0.8:0.9")
